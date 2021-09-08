@@ -1,0 +1,29 @@
+https://leetcode.com/explore/interview/card/top-interview-questions-easy/92/array/564/
+
+
+class Solution {
+    public int maxProfit(int[] prices) {
+        int arrLength = prices.length; 
+        int profits = 0;
+        if(arrLength == 0 || arrLength == 1){
+            return 0;
+        }
+        else{ 
+            int firstDig = 0;
+            int secondDig = 1;
+            while (true){
+                if(prices[secondDig] - prices[firstDig] > 0){
+                    profits+= (prices[secondDig] - prices[firstDig]);
+                }
+                firstDig += 1;
+                secondDig += 1;
+                if(secondDig+1 > arrLength){
+                    break;
+                }
+                
+            }
+        }
+        return profits;
+        
+    }
+}
