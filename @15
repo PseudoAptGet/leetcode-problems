@@ -1,0 +1,20 @@
+https://leetcode.com/problems/contains-duplicate/submissions/
+
+class Solution {
+    public boolean containsDuplicate(int[] nums) {
+        HashSet<Integer> digitTracker = new HashSet<Integer>();
+        
+        // iterate through the arr
+        for(int curNum : nums) {
+            // if digit in hashmap, was seen before -> fail
+            if (digitTracker.contains(curNum)) {
+                return true; 
+            } else {
+                digitTracker.add(curNum);
+            }
+        }
+        
+        // went through entire arr without repetition. SHould pass then.
+        return false; 
+    }
+}
