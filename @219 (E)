@@ -1,0 +1,22 @@
+class Solution {
+    public boolean containsNearbyDuplicate(int[] nums, int k) {
+        
+        HashMap<Integer, ArrayList<Integer>> integerLocator = new HashMap<Integer, ArrayList<Integer>>(); 
+        
+        for(int i = 0; i < nums.length; ++i) {
+            // element exists
+            if (integerLocator.containsKey(nums[i])) {
+                integerLocator.get(nums[i]).add(i);
+            } else { 
+                ArrayList<Integer> container = new ArrayList<Integer>();
+                container.add(i);
+                
+                integerLocator.put(nums[i], container);
+            }
+        }
+        
+        // iterate through, and see if anything holds
+        for (Entry )
+        
+    }
+}
