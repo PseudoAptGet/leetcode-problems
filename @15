@@ -1,5 +1,10 @@
 https://leetcode.com/problems/contains-duplicate/submissions/
 
+intuition: 
+- Just create a hashmap that contains all the integers seen so far. If there's a duplicate along the way (you know there's a duplicate because the hashmap 
+  contains the value from a previous index of the array), then return true. Else iterate through the entire thing (and because no duplicates were detected),
+  return false. 
+
 class Solution {
     public boolean containsDuplicate(int[] nums) {
         HashSet<Integer> digitTracker = new HashSet<Integer>();
