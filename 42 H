@@ -1,0 +1,37 @@
+class Solution {
+    public int trap(int[] height) {
+        
+        int secondHighest = getSecondHighestVal(height);
+        int returnTrap = 0; 
+        
+        for (int i = 1; i <= secondHighest; ++i) { 
+            boolean hasValidLeft = false; 
+            int valueAccumulated = 0; 
+            for (int w = 0; w < height.length; ++w) { 
+                if (height[w] >= i && hasValidLeft == false) { 
+                    hasValidLeft = true; 
+                } else if (height[w] >= i && hasValidLeft == true) {
+                    returnTrap += valueAccumulated; 
+                    valueAccumulated = 0; 
+                } else if (height[w] < i && hasValidLeft == true) { 
+                    valueAccumulated++;
+                } else { 
+                    continue;
+                }
+            }
+        }
+        
+        return returnTrap; 
+        
+    }
+    
+    private int getSecondHighestVal(int[] height) { 
+        if (height.length < 2) {
+            return height[0];
+        }
+        int[] heightCopy = height.clone(); 
+        
+        Arrays.sort(heightCopy);
+        return heightCopy[heightCopy.length -2];
+    }
+}
