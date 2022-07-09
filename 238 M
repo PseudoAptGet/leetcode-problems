@@ -1,0 +1,67 @@
+class Solution {
+    public int[] productExceptSelf(int[] nums) {
+        int[] sol = new int[nums.length]; 
+        HashMap<Integer, Integer> productContainer = loadHashMap(nums);
+        for (int i = 0; i < sol.length; ++i) { 
+            int curCalcVal = 1; 
+            if (i > 0) { 
+                curCalcVal *= productContainer.get(i);
+            }
+            if (i < nums.length-1) { 
+                curCalcVal *= productContainer.get((-1)*(nums.length - 1 - i));
+            }
+            
+            sol[i] = curCalcVal;
+
+        }
+        return sol; 
+    }
+    
+    public HashMap<Integer, Integer> loadHashMap(int[] nums) { 
+        HashMap<Integer, Integer> container = new HashMap(); 
+        container.put(1, nums[0]); 
+        container.put(-1, nums[nums.length-1]); 
+        
+        for (int i = 2; i <= nums.length; ++i) { 
+            container.put(i, container.get(i-1) * nums[i-1]);
+        }
+        
+        for (int i = -2; i >= nums.length*-1; --i) { 
+            container.put(i, nums[nums.length + i] * container.get(i+1));
+        }
+        
+        return container; 
+    }
+}
+
+/*
+5 4 3 2 1 (neg)
+a b c d e 
+1 2 3 4 5 
+
+4 -> n/a
+3 -> 1
+2 -> 2
+1 -> 3
+0 -> 4
+
+
+
+0: a 
+1: ab 
+2: abc
+
+-5: e
+-4: de
+-3: edc
+
+if we see 1st index out of 5 
+- > 1 and -3 
+
+if we see 0th index out of 5 
+-> n/a and -4
+
+if we see 5th index out of 5 
+-> 4
+
+*/
